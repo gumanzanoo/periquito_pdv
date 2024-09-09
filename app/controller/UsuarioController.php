@@ -1,4 +1,7 @@
 <?php
+
+use JetBrains\PhpStorm\NoReturn;
+
 require_once __DIR__ . '/../model/Usuario.php';
 
 class UsuarioController {
@@ -20,10 +23,16 @@ class UsuarioController {
         return false;
     }
 
-    public function logout(): void
+    #[NoReturn] public function logout(): void
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        session_unset();
         session_destroy();
+
         header('Location: /resources/pages/login.php');
+        exit();
     }
 }

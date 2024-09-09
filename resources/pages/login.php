@@ -5,11 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+
+    <style>
+        body, input, label, button, p {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .container {
+            max-width: 400px;
+        }
+
+        .periquito-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #004d40;
+        }
+
+        input {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="text-center">Login</h1>
+    <div class="text-center">
+        <img src="/resources/periquito_img.svg" alt="Periquito" class="img-fluid" style="max-width: 150px;">
+        <p class="periquito-title">Periquito PDV</p>
+    </div>
 
     <?php if (isset($_GET['cadastro']) && $_GET['cadastro'] == 'sucesso'): ?>
         <div class="alert alert-success text-center">
@@ -28,7 +53,7 @@
             <input type="password" name="senha" id="senha" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
 
     <div class="text-center mt-3">

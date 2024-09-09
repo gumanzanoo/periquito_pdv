@@ -13,7 +13,18 @@ $produtos = $produtoController->listarProdutos();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Produtos</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #212121;
+            font-family: 'JetBrains Mono', monospace;
+            color: white;
+        }
+    </style>
 
     <script src="/resources/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -55,29 +66,6 @@ $produtos = $produtoController->listarProdutos();
     <?php endif; ?>
 </div>
 
-<script>
-    function adicionarAoCarrinho(produtoId) {
-        const formData = new FormData();
-        formData.append('produtoId', produtoId);
-
-        fetch('../../app/adicionar_ao_carrinho.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.text())
-            .then(data => {
-                const mensagemDiv = document.getElementById('mensagem');
-                mensagemDiv.classList.remove('d-none');
-                mensagemDiv.classList.add('alert-success');
-                mensagemDiv.innerHTML = 'Produto adicionado ao carrinho com sucesso!';
-            })
-            .catch(error => {
-                const mensagemDiv = document.getElementById('mensagem');
-                mensagemDiv.classList.remove('d-none');
-                mensagemDiv.classList.add('alert-danger');
-                mensagemDiv.innerHTML = 'Erro ao adicionar produto ao carrinho.';
-            });
-    }
-</script>
+<script src="/resources/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -9,7 +9,18 @@ verificarAutenticacao();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Fornecedores</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #212121;
+            font-family: 'JetBrains Mono', monospace;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
@@ -33,32 +44,6 @@ verificarAutenticacao();
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
-
-<script>
-    document.getElementById('formFornecedor').addEventListener('submit', function (event) {
-        event.preventDefault();
-        const formData = new FormData(this);
-
-        fetch(this.action, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.text())
-            .then(data => {
-                const mensagem = document.getElementById('mensagem');
-                mensagem.classList.remove('d-none', 'alert-danger');
-                mensagem.classList.add('alert-success');
-                mensagem.innerHTML = 'Fornecedor cadastrado com sucesso!';
-                document.getElementById('formFornecedor').reset();
-            })
-            .catch(error => {
-                const mensagem = document.getElementById('mensagem');
-                mensagem.classList.remove('d-none', 'alert-success');
-                mensagem.classList.add('alert-danger');
-                mensagem.innerHTML = 'Erro ao cadastrar fornecedor.';
-            });
-    });
-</script>
 
 <script src="/resources/js/bootstrap.bundle.min.js"></script>
 </body>

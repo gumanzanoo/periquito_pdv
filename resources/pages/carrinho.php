@@ -13,7 +13,19 @@ $carrinho = $pedidoController->listarCarrinho();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de Compras</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #212121;
+            font-family: 'JetBrains Mono', monospace;
+            color: white;
+        }
+    </style>
+
     <script src="/resources/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -57,56 +69,6 @@ $carrinho = $pedidoController->listarCarrinho();
     <button class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
 </div>
 
-<script>
-    function removerDoCarrinho(produtoId) {
-        const formData = new FormData();
-        formData.append('produtoId', produtoId);
-
-        fetch('../../app/remover_do_carrinho.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    const mensagemDiv = document.getElementById('mensagem');
-                    mensagemDiv.classList.remove('d-none');
-                    mensagemDiv.classList.add('alert-success');
-                    mensagemDiv.innerHTML = data.mensagem;
-
-                    window.location.reload();
-                } else {
-                    const mensagemDiv = document.getElementById('mensagem');
-                    mensagemDiv.classList.remove('d-none');
-                    mensagemDiv.classList.add('alert-danger');
-                    mensagemDiv.innerHTML = 'Erro ao remover produto do carrinho.';
-                }
-            })
-            .catch(error => {
-                const mensagemDiv = document.getElementById('mensagem');
-                mensagemDiv.classList.remove('d-none');
-                mensagemDiv.classList.add('alert-danger');
-                mensagemDiv.innerHTML = 'Erro ao remover produto do carrinho.';
-            });
-    }
-
-    function finalizarCompra() {
-        fetch('../../app/finalizar_compra.php', {
-            method: 'POST'
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.sucesso) {
-                    alert('Compra realizada com sucesso!');
-                    window.location.reload();
-                } else {
-                    alert('Erro ao finalizar a compra.');
-                }
-            })
-            .catch(error => {
-                alert('Erro ao finalizar a compra.');
-            });
-    }
-</script>
+<script src="/resources/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

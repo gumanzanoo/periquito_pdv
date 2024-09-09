@@ -9,7 +9,18 @@ verificarAutenticacao();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produtos</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #212121;
+            font-family: 'JetBrains Mono', monospace;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
@@ -38,49 +49,6 @@ verificarAutenticacao();
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        fetch('../../app/carregar_fornecedores.php')
-            .then(response => response.json())
-            .then(data => {
-                let select = document.getElementById('fornecedor_id');
-                data.forEach(fornecedor => {
-                    let option = document.createElement('option');
-                    option.value = fornecedor.id;
-                    option.text = fornecedor.nome;
-                    select.appendChild(option);
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao carregar fornecedores:', error);
-            });
-
-        document.getElementById('formProduto').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.text())
-                .then(data => {
-                    const mensagem = document.getElementById('mensagem');
-                    mensagem.classList.remove('d-none', 'alert-danger');
-                    mensagem.classList.add('alert-success');
-                    mensagem.innerHTML = 'Produto cadastrado com sucesso!';
-                    document.getElementById('formProduto').reset();
-                })
-                .catch(error => {
-                    const mensagem = document.getElementById('mensagem');
-                    mensagem.classList.remove('d-none', 'alert-success');
-                    mensagem.classList.add('alert-danger');
-                    mensagem.innerHTML = 'Erro ao cadastrar produto.';
-                });
-        });
-    });
-</script>
 
 <script src="/resources/js/bootstrap.bundle.min.js"></script>
 </body>
